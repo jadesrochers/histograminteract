@@ -1,5 +1,5 @@
 {
-    "name": "@jadesrochers/figurebuilder",
+    "name": "@jadesrochers/histograminteract",
     "version": "0.1.0",
     "license": "MIT",
     "author": "Jared Desrochers",
@@ -8,9 +8,9 @@
     "module": "build/esm.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jadesrochers/figurebuilder.git"
+        "url": "https://github.com/jadesrochers/histograminteract.git"
     },
-    "description": "A set of components to build figures, allow selection",
+    "description": "A set of components to build figures, with interactive histogram built",
     "keywords": [
         "react",
         "figure",
