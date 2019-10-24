@@ -1,0 +1,9 @@
+{
+  "extends": "problems",
+  "env": {
+  "node": true
+  },
+  "pareserOptions": {
+    "ecmaVersion": 2018
+  }
+}

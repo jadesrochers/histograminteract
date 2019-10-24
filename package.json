@@ -1,0 +1,55 @@
+{
+    "name": "@jadesrochers/figurebuilder",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": "Jared Desrochers",
+    "main": "build/cjs.js",
+    "browser": "build/iife.js",
+    "module": "build/esm.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jadesrochers/figurebuilder.git"
+    },
+    "description": "A set of components to build figures, allow selection",
+    "keywords": [
+        "react",
+        "figure",
+        "histogram",
+	"select"
+    ],
+    "dependencies": {
+        "@emotion/core": "^10.0.10",
+        "@jadesrochers/reacthelpers": "^0.1.8",
+        "@jadesrochers/selectbox": "^0.1.3",
+        "d3-format": "^1.4.1",
+        "d3-scale": "^3.2.0",
+        "ramda": "^0.26.1"
+    },
+    "peerdependencies": {
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "build": "rollup -c"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.6.4",
+        "@babel/preset-env": "^7.6.3",
+        "@babel/preset-react": "^7.6.3",
+        "babel-loader": "^8.0.6",
+        "enzyme": "^3.9.0",
+        "enzyme-adapter-react-16": "^1.13.0",
+        "eslint": "^6.4.0",
+        "eslint-config-problems": "^3.0.1",
+        "jest": "^24.9.0",
+        "jest-emotion": "^10.0.11",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "rollup": "^1.25.2",
+        "rollup-plugin-babel": "^4.3.3",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-filesize": "^6.2.1",
+        "rollup-plugin-node-resolve": "^5.2.0"
+    }
+}
