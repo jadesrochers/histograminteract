@@ -4,7 +4,6 @@
     "license": "MIT",
     "author": "Jared Desrochers",
     "main": "build/cjs.js",
-    "browser": "build/iife.js",
     "module": "build/esm.js",
     "repository": {
         "type": "git",
