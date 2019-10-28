@@ -16,15 +16,6 @@ export default {
           file: './build/esm.js',
           format: 'esm',
       },
-      {
-        file: './build/iife.js',
-        format: 'iife',
-        name: 'bundle',
-        globals: {
-          'ramda': 'ramda',
-          'react': 'React'
-        }
-      }
     ],
     plugins: [
         babel({
