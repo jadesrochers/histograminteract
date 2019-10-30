@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from '../../enzyme';
+import { shallow } from '../enzyme';
 import { useLimits } from '../datalimits'
-import { HookWrapper } from '../hookwrappers'
+import { HookWrapper } from '@jadesrochers/reacthelpers'
 
 describe('useLimits tests', () => {
   test('Test raw and scaled limit setting', () => {
