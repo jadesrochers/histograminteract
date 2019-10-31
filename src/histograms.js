@@ -11,9 +11,9 @@ const HistogramDataHighlight = (props) => {
   return(
   // The sizes for Select and Figure are arbitrary but 
   // need to match to keep selection scaling accurate!
-  <SelectBase width={'90%'} height={'95%'} sizex={630} sizey={110} >
+  <SelectBase width={'100%'} height={'100%'} sizex={630} sizey={110} >
     <ViewBoxConst key='viewbox'
-      height={'85%'} width={'100%'} 
+      height={'100%'} width={'100%'} 
       viewBox={'0 0 700 145'}
     >
       <FigureContainer key='figurebuilder'
@@ -29,7 +29,10 @@ const HistogramDataHighlight = (props) => {
       >
        <AxisLeft key='yaxis' scale={linearYScale} />
        <AxisBottom key='xaxis' scale={scaleHistLin} />
-       <HighlightBars key='histogram' fill='#48c9b0'  highlightfill='#3498db' />
+       <HighlightBars key='histogram' 
+         fill={props.fill ? props.fill : '#48c9b0'}
+         highlightfill={props.highlightfill ? props.highlightfill : '#3498db'}
+       />
        <SetBarxLimits key='limitsetter' > 
          <SelectXRect key='selectiondraw' />
          <MouseRect key='mousecapture' />
