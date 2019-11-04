@@ -20,7 +20,7 @@
     "dependencies": {
         "@emotion/core": "^10.0.10",
         "@jadesrochers/reacthelpers": "^0.1.14",
-        "@jadesrochers/selectbox": "^0.1.15",
+        "@jadesrochers/selectbox": "^0.1.16",
         "d3-format": "^1.4.1",
         "d3-scale": "^3.2.0",
         "ramda": "^0.26.1"
