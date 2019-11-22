@@ -29,7 +29,7 @@ const scaleHistLin = (props) => {
 const TickLine = ({stroke, length, ...other}) => {
   stroke = stroke ? stroke : '#000' 
   return(
-    <line stroke={stroke} {...other}  css={{ shapeRendering: "crispEdges"}}  />
+    <line stroke={stroke} {...other}  css={{ shapeRendering: "geometricPrecision"}}  />
   )
 }
 
@@ -111,7 +111,7 @@ const AxisBottom = (props) => {
  
   return (
     <g transform={`translate(0,${props.height})`} style={{fontSize: '0.8rem'}} >
-      <line x1={-1} y1={1} x2={props.width} y2={1} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "crispEdges"}} />
+      <line x1={-1} y1={1} x2={props.width} y2={1} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "geometricPrecision"}} />
       <TickSet 
         ticks={ticks}
         line={{
@@ -144,7 +144,7 @@ const AxisLeft = (props) => {
  
   return (
     <g textAnchor='end' style={{fontSize: '0.8rem'}} >
-      <line x1={0} y1={props.height} x2={0} y2={0} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "crispEdges"}}/>
+      <line x1={0} y1={props.height} x2={0} y2={0} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "geometricPrecision"}}/>
       <TickSet 
         ticks={ticks}
         line={{ x2: -6 }}
