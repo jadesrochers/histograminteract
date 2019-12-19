@@ -146,7 +146,6 @@ describe('Scaling tests', () => {
   const histScale = scaleHistLin({xdata:[1,1,1,3,4,6,7,10], width:110, nbins:10}) 
   // The scale must be returned by a function, so if it is not, just
   // wrap it in one like I do with the Pow scale here. 
-  console.log('what is scaleSymlog: ',scaleSymlog)
   const ycust = customYscale(() => scalePow().exponent(1/4), {ydata:[1,1,1,3,4,6,7,30,100], height:110}) 
   const xcust = customXscale(() => scalePow().exponent(1/2), {xdata:[1,1,1,3,4,6,7,30,100], width:110, nbins:10}) 
   // For log scales use scaleSymlog, otherwise there are problems

@@ -20,6 +20,7 @@ import { pickformatter } from '@jadesrochers/reacthelpers'
 // where limits will be set to show subset of the data
 const HistogramDataHighlight = (props) => {
   const formatter = pickformatter(props.xdata)
+  /* console.log('Props to Histogram data highlight:', props) */
   return(
   // The sizes for Select and Figure are arbitrary but 
   // need to match to keep selection scaling accurate!
@@ -41,11 +42,9 @@ const HistogramDataHighlight = (props) => {
       >
        <AxisLeft key='yaxis' 
          scale={props.yscale ? customYscale(props.yscale) : linearYScale} 
-
          />
        <AxisBottom key='xaxis' 
          scale={props.xscale ? customXscale(props.xscale) : scaleHistLin} 
-
          />
        <HighlightBars key='histogram' 
          fill={props.fill ? props.fill : '#48c9b0'}

@@ -29,7 +29,7 @@ const HistBars = (props) => {
   let rectvals, hist, barmax, maxmin
   if(props.xscale && props.yscale){
     hist = getBins(props.xdata)(props.xscale.ticks(props.nbins)) 
-    barmax = Math.max(...R.map(n => n['data'].length)(hist))
+    barmax = Math.max(...R.map(n => n.data.length)(hist))
 
     rectvals=calcHistRects(props.height, props.xscale, props.yscale)(hist)
     maxmin = R.map(bin => ({xmax: bin.xmax, xmin: bin.xmin}))(rectvals) 

@@ -33,12 +33,9 @@ const FigureContainer = (props) => {
   const pass = R.dissoc('children',props)
   const propsToChildren = R.map(child => {
     return React.cloneElement(child, 
-     {...pass,
-      height: height, width: width, 
-      xscale: xscale, xscaleSet: xscaleSet, 
-      yscale: yscale, yscaleSet: yscaleSet, 
-      ymaxSet: ymaxSet, ymax: ymax,
-      setPlotData: setPlotData, plotData: plotData,
+     {...pass, height, width, 
+      xscale, xscaleSet, yscale, yscaleSet, 
+      ymaxSet, ymax, setPlotData, plotData,
       })
   })(fps.toArray(props.children))
 
