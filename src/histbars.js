@@ -1,8 +1,11 @@
 import React, { useMemo } from 'react';
 import * as R from 'ramda';
+
+import { roundtenth } from '@jadesrochers/reacthelpers';
+import { isBarHighlightedX } from '@jadesrochers/selectbox';
+import * as fps from '@jadesrochers/fpstreamline';
+
 import { Rect, HighlightRect } from './svgfeatures'
-import { roundtenth } from '@jadesrochers/reacthelpers'
-import { isBarHighlightedX } from '@jadesrochers/selectbox'
 
 // Creates Histogram bars on a plot providing there is xdata
 // sets ymax once it calculates it, 
@@ -13,6 +16,7 @@ const getBins = R.curry((data, ticks) => {
   return R.pipe(
     R.drop(1),
     R.zip(R.init(ticks)),
+    fps.trace('getBins bin values'),
     R.map((bin) => ({data: R.filter((val) => val>bin[0] && val<=bin[1])(data), x0:bin[0], x1:bin[1]})),
   )(ticks)
 })

@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from '../enzyme';
 import { HistogramDataHighlight } from '../histograms'
-import { scaleSymlog } from 'd3-scale';
+import { customYscale, customXscale } from '../axes'
+import { scaleSymlog, scaleLog} from 'd3-scale';
 
 describe('Histogram tests', () => {
   // Tests the histbars.js file, which was not readily done without
@@ -33,14 +34,17 @@ describe('Histogram tests', () => {
       )).toBeTruthy()
   });
 
+  // If you want to use a custom scale need to pass it through the 
+  // customX/Y scale functions from axes module to get it set up.
   test('test custom scaling for HistogramDataHighlight', () => {
+    let custLog = customXscale(scaleLog, 1)
     let wrapper = mount(
       <svg> 
         <HistogramDataHighlight 
-          xdata={[1,1,2,3,3,4,4,6,6,9,10,11,40,93]}  
-          xscale={scaleSymlog}
-          nbins={4}
-          xticks={4}
+          xdata={[1,2,4,6,9,22,40,93,125,237,540,1121,2431,5434,10321]}  
+          xscale={custLog}
+          nbins={5}
+          xticks={5}
           yticks={3}
           height={140}
           width={270}
@@ -53,12 +57,11 @@ describe('Histogram tests', () => {
     /* console.log('Histogram scale test: ', wrapper.debug()) */
     expect(wrapper.containsAllMatchingElements(
       [
-        <rect height={80} width={126} />, 
-        <rect height={6.7} width={26.9} />, 
-        <rect height={0} width={15.6} />,
-        <rect height={0} width={10.8} />, 
-        <rect height={6.7} width={8.2} />, 
-        <rect height={0} width={6.5} />, 
+        <rect height={100} width={39} />, 
+        <rect height={75} width={39} />, 
+        <rect height={75} width={39} />,
+        <rect height={75} width={39} />, 
+        <rect height={25} width={39} />, 
       ]
       )).toBeTruthy()
   });

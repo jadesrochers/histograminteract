@@ -26,14 +26,16 @@ const scaleHistLin = (props) => {
   return scaleLinear().domain([0,max]).range([0,props.width])
 }
 
-const customYscale = R.curry((yscale, props) => {
+const customYscale = R.curry((yscale, min, props) => {
+  const ymin = min ? min : 0 
   const ymax = props.ydata ? Math.max(...props.ydata) : props.ymax
-  return yscale().domain([0,ymax]).range([0,props.height])
+  return yscale().domain([ymin,ymax]).range([0,props.height])
 })
 
-const customXscale = R.curry((xscale, props) => {
-  const max = Math.max(...props.xdata) * (1+1/props.nbins)
-  return xscale().domain([0,max]).range([0,props.width])
+const customXscale = R.curry((xscale, min, props) => {
+  const xmin = min ? min : 0 
+  const xmax = Math.max(...props.xdata) * (1+1/props.nbins)
+  return xscale().domain([xmin,xmax]).range([0,props.width])
 })
 
 const TickLine = ({stroke, length, ...other}) => {

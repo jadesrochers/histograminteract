@@ -1,13 +1,14 @@
 /** @jsx jsx */
 import React, { useState } from 'react';
 import * as R from 'ramda';
-import fps from '@jadesrochers/fpstreamline';
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/core';
+
+import * as fps from '@jadesrochers/fpstreamline';
 
 const getFigHeight = (height, margins) => ( height - margins.top - margins.bottom )
 const getFigWidth = (width, margins) => ( width - margins.left - margins.right )
 
-// Arguments to it - Need at the least width/height, margins.
+// Arguments to FigureContainer - Need at the least width/height, margins.
 // xdata/ydata/zdata all depends on what the children are and need
 // ticks is a good idea so you get reasonable labels.
 

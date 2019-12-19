@@ -41,10 +41,10 @@ const HistogramDataHighlight = (props) => {
         limitHook={props.limitHook}
       >
        <AxisLeft key='yaxis' 
-         scale={props.yscale ? customYscale(props.yscale) : linearYScale} 
+         scale={props.yscale ? props.yscale : linearYScale} 
          />
        <AxisBottom key='xaxis' 
-         scale={props.xscale ? customXscale(props.xscale) : scaleHistLin} 
+         scale={props.xscale ? props.xscale : scaleHistLin} 
          />
        <HighlightBars key='histogram' 
          fill={props.fill ? props.fill : '#48c9b0'}
