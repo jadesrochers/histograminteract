@@ -14,19 +14,19 @@ const useLimits = () => {
   const [yscale, setYscale] = useState(() => { let invert = n => n; return {invert: invert} })
 
   const setLimits = R.curry((which, maxmin) => {
-    let vals = R.values(maxmin)
-    let scaled, scale, setlims
+    const vals = R.values(maxmin)
+    let scale, setlims
     if(R.equals(which)('x')){
       scale = xscale; setlims = setxlimits
     }else{
       scale = yscale; setlims = setylimits
     }
-    scaled = R.map(scale.invert)(vals)
+    const scaled = R.map(scale.invert)(vals)
     setlims({min: R.min(...scaled), max: R.max(...scaled)})
   })
 
   const setRawLims = (which, maxmin) => {
-    let min = R.min(...maxmin), max = R.max(...maxmin)
+    const min = R.min(...maxmin), max = R.max(...maxmin)
     if(R.equals(which)('x')){
       setxlimits({min: min, max: max})
     }else{

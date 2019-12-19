@@ -6,9 +6,9 @@ import { format } from 'd3-format';
 import { scaleLinear } from 'd3-scale';
 
 const getTickLabels = R.curry((scale, nticks, formatter=format('.2~f')) => {
-  let ticks = scale.nice(nticks).ticks(nticks)
-  let scaled = R.map(n => Math.round(n*10)/10)(R.map(scale)(ticks))
-  let formatted = R.map(formatter)(ticks)  
+  const ticks = scale.nice(nticks).ticks(nticks)
+  const scaled = R.map(n => Math.round(n*10)/10)(R.map(scale)(ticks))
+  const formatted = R.map(formatter)(ticks)  
   return { scaled, formatted }
 })
 
@@ -25,6 +25,16 @@ const scaleHistLin = (props) => {
   const max = Math.max(...props.xdata) * (1+1/props.nbins)
   return scaleLinear().domain([0,max]).range([0,props.width])
 }
+
+const customYscale = R.curry((yscale, props) => {
+  const ymax = props.ydata ? Math.max(...props.ydata) : props.ymax
+  return yscale().domain([0,ymax]).range([0,props.height])
+})
+
+const customXscale = R.curry((xscale, props) => {
+  const max = Math.max(...props.xdata) * (1+1/props.nbins)
+  return xscale().domain([0,max]).range([0,props.width])
+})
 
 const TickLine = ({stroke, length, ...other}) => {
   stroke = stroke ? stroke : '#000' 
@@ -98,11 +108,11 @@ const TickDumbSet = ({ticks, ...other}) => {
 // scaling accordingly (using xdata).
 // Also sets up the ticks and text to be aligned below the axis.
 const AxisBottom = (props) => {
-  let xscale = props.scale(props)
-  let { scaled, formatted } = getTickLabels(xscale, props.xticks, props.tickformat)
-  let ticks = R.zip(scaled, formatted)
-  let defaultStyle = {stroke: '#000000'}
-  let data0 = props.xdata[0]
+  const xscale = props.scale(props)
+  const { scaled, formatted } = getTickLabels(xscale, props.xticks, props.tickformat)
+  const ticks = R.zip(scaled, formatted)
+  const defaultStyle = {stroke: '#000000'}
+  const data0 = props.xdata[0]
   useMemo(() => {
     props.limitHook && props.limitHook.setXscale(() => xscale)
     props.xscaleSet(() => xscale)
@@ -133,10 +143,10 @@ const AxisBottom = (props) => {
 // Sets up the ticks outside and to the left using what is know about ydata.
 // Not configured to deal with Y data only charts like horizontal bars. 
 const AxisLeft = (props) => {
-  let yscale = props.scale(props)
-  let { scaled, formatted } = getTickLabels(yscale, props.yticks)
-  let ticks =  R.zip(scaled, R.reverse(formatted))
-  let defaultStyle = {stroke: '#000000'}
+  const yscale = props.scale(props)
+  const { scaled, formatted } = getTickLabels(yscale, props.yticks)
+  const ticks =  R.zip(scaled, R.reverse(formatted))
+  const defaultStyle = {stroke: '#000000'}
   useMemo(() => {
     props.yscaleSet(() => yscale)
     props.ydata && props.limitHook.setRawLims('y',[Math.max(...props.ydata),Math.min(...props.ydata)])
@@ -158,4 +168,4 @@ const AxisLeft = (props) => {
   )
 }
 
-export { linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels }
+export { customYscale, customXscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels }

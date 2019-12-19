@@ -38,8 +38,8 @@ const ResetButton = (props) => {
        <button 
          onClick={() => {
            props.setselection(true, 0, 0, 0, 0)
-           props.limitHook.setRawLims('x',[0, 9999999])
-           props.limitHook.setRawLims('y',[0, 9999999])
+           props.limitHook.setRawLims('x',[0, 999999999999])
+           props.limitHook.setRawLims('y',[0, 999999999999])
          } }
          css={[ baseStyle, activeState, hoverColor, 
          {visibility: (props.selectx ? 'visibile' : 'hidden')}, 

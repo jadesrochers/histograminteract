@@ -1,7 +1,8 @@
 import React from 'react';
 import { format } from 'd3-format';
+import { scaleSymlog, scalePow } from 'd3-scale';
 import { shallow, mount } from '../enzyme';
-import { linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes'
+import { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes'
 import { matchers } from 'jest-emotion'
 
 expect.extend(matchers)
@@ -141,8 +142,16 @@ describe('TickDumbset tests', () => {
 
 describe('Scaling tests', () => {
 
-  let lyScale = linearYScale({ydata:[1,1,1,3,4,6,7,11], height:110}) 
-  let histScale = scaleHistLin({xdata:[1,1,1,3,4,6,7,10], width:110, nbins:10}) 
+  const lyScale = linearYScale({ydata:[1,1,1,3,4,6,7,11], height:110}) 
+  const histScale = scaleHistLin({xdata:[1,1,1,3,4,6,7,10], width:110, nbins:10}) 
+  // The scale must be returned by a function, so if it is not, just
+  // wrap it in one like I do with the Pow scale here. 
+  console.log('what is scaleSymlog: ',scaleSymlog)
+  const ycust = customYscale(() => scalePow().exponent(1/4), {ydata:[1,1,1,3,4,6,7,30,100], height:110}) 
+  const xcust = customXscale(() => scalePow().exponent(1/2), {xdata:[1,1,1,3,4,6,7,30,100], width:110, nbins:10}) 
+  // For log scales use scaleSymlog, otherwise there are problems
+  // because plain log can't handle zero
+  const xcustlog = customXscale(scaleSymlog, {xdata:[1,1,1,3,4,6,7,30,100], width:110, nbins:10}) 
   test('Use a linearYScale', () => {
     expect(lyScale(11)).toEqual(110)
     expect(lyScale(0)).toEqual(0)
@@ -153,6 +162,25 @@ describe('Scaling tests', () => {
     expect(histScale(0)).toEqual(0)
     expect(histScale(10)).toEqual(100)
     expect(histScale(5.5)).toEqual(55)
+  });
+
+  test('Use a custom Y scale', () => {
+    expect(Math.round(ycust(1))).toEqual(35)
+    expect(Math.round(ycust(80))).toEqual(104)
+    expect(Math.round(ycust(10))).toEqual(62)
+  });
+
+  test('Use a custom X scale', () => {
+    expect(xcust(0)).toEqual(0)
+    expect(Math.round(xcust(81))).toEqual(94)
+    expect(Math.round(xcust(10))).toEqual(33)
+  });
+
+  test('Use a custom log X scale', () => {
+    expect(xcustlog(0)).toEqual(0)
+    expect(Math.round(xcustlog(1))).toEqual(16)
+    expect(Math.round(xcustlog(75))).toEqual(101)
+    expect(Math.round(xcustlog(20))).toEqual(71)
   });
 
   test('Get labels for ticks', () => {

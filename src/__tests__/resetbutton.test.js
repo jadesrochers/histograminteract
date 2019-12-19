@@ -21,8 +21,8 @@ describe('ResetButton tests', () => {
     let onclick = wrapper.find('button').props().onClick
     onclick()
     expect(setselection).toHaveBeenCalledWith(true, 0, 0, 0, 0)
-    expect(limitHook.setRawLims).toHaveBeenCalledWith('x', [0, 9999999])
-    expect(limitHook.setRawLims).toHaveBeenCalledWith('y', [0, 9999999])
+    expect(limitHook.setRawLims).toHaveBeenCalledWith('x', [0, 999999999999])
+    expect(limitHook.setRawLims).toHaveBeenCalledWith('y', [0, 999999999999])
 
   });
 
