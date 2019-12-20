@@ -146,7 +146,7 @@ const AxisBottom = (props) => {
 // Not configured to deal with Y data only charts like horizontal bars. 
 const AxisLeft = (props) => {
   const yscale = props.scale(props)
-  const { scaled, formatted } = getTickLabels(yscale, props.yticks)
+  const { scaled, formatted } = getTickLabels(yscale, props.yticks, props.tickformat)
   const ticks =  R.zip(scaled, R.reverse(formatted))
   const defaultStyle = {stroke: '#000000'}
   useMemo(() => {

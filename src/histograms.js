@@ -42,11 +42,11 @@ const HistogramDataHighlight = (props) => {
       >
        <AxisLeft key='yaxis' 
          scale={props.yscale ? props.yscale : linearYScale} 
-         tickformat={props.yformatter ? props.formatter : undefined }
+         tickformat={props.yformatter ? props.yformatter : undefined }
        />
        <AxisBottom key='xaxis' 
          scale={props.xscale ? props.xscale : scaleHistLin} 
-         tickformat={props.xformatter ? props.formatter : formatter}
+         tickformat={props.xformatter ? props.xformatter : formatter}
        />
        <HighlightBars key='histogram' 
          fill={props.fill ? props.fill : '#48c9b0'}

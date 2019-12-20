@@ -3,6 +3,7 @@ import { mount } from '../enzyme';
 import { HistogramDataHighlight } from '../histograms'
 import { customYscale, customXscale } from '../axes'
 import { scaleSymlog, scaleLog} from 'd3-scale';
+import { format } from 'd3-format';
 
 describe('Histogram tests', () => {
   // Tests the histbars.js file, which was not readily done without
@@ -36,7 +37,7 @@ describe('Histogram tests', () => {
 
   // If you want to use a custom scale need to pass it through the 
   // customX/Y scale functions from axes module to get it set up.
-  test('test custom scaling for HistogramDataHighlight', () => {
+  test('test custom scaling,format for HistogramDataHighlight', () => {
     let custLog = customXscale(scaleLog, 1)
     let wrapper = mount(
       <svg> 
@@ -48,6 +49,8 @@ describe('Histogram tests', () => {
           yticks={3}
           height={140}
           width={270}
+          xformatter={format('.2s')}
+          yformatter={format('.3s')}
           margins={{top: 10, left: 50, bottom: 30, right: 20}}
         />
       </svg>) 
@@ -64,6 +67,8 @@ describe('Histogram tests', () => {
         <rect height={25} width={39} />, 
       ]
       )).toBeTruthy()
+
+      expect(wrapper.text()).toEqual('4.003.002.001.000.001.0101001.0k10k100kreset limits')
   });
 
 
