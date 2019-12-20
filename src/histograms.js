@@ -15,7 +15,8 @@ import { pickformatter } from '@jadesrochers/reacthelpers'
 // nbins        -  number of bins for data; but d3 takes only as guideline
 // xticks       -  number of xticks to use, also a guideline
 // yticks       -  number of yticks to use, also a guideline
-// tickformat   -  function to format tick values for x axis.
+// xformatter   -  function to format tick values for x axis.
+// yformatter   -  function to format tick values for y axis.
 // limitHook    -  allows linking selections on histogram to other figure,
 // where limits will be set to show subset of the data
 const HistogramDataHighlight = (props) => {
@@ -37,15 +38,16 @@ const HistogramDataHighlight = (props) => {
         nbins={props.nbins ? props.nbins : 25}
         xticks={props.xticks ? props.xticks : 10}
         yticks={props.yticks ? props.yticks : 6}
-        tickformat={formatter}
         limitHook={props.limitHook}
       >
        <AxisLeft key='yaxis' 
          scale={props.yscale ? props.yscale : linearYScale} 
-         />
+         tickformat={props.yformatter ? props.formatter : undefined }
+       />
        <AxisBottom key='xaxis' 
          scale={props.xscale ? props.xscale : scaleHistLin} 
-         />
+         tickformat={props.xformatter ? props.formatter : formatter}
+       />
        <HighlightBars key='histogram' 
          fill={props.fill ? props.fill : '#48c9b0'}
          highlightfill={props.highlightfill ? props.highlightfill : '#3498db'}
