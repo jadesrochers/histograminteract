@@ -13,10 +13,19 @@ import { pickformatter } from '@jadesrochers/reacthelpers'
 // margins      -  set margins around plot area, gives space for labels/ticks
 // xdata (req)  -  data for the histogram
 // nbins        -  number of bins for data; but d3 takes only as guideline
+
 // xticks       -  number of xticks to use, also a guideline
 // yticks       -  number of yticks to use, also a guideline
+
+// xstyle       -  Style for x axis <g> element
+// ystyle       -  Style for y axis <g> element
+
+// xscale       -  Scaling for x axis
+// yscale       -  Scaling for y axis
+
 // xformatter   -  function to format tick values for x axis.
 // yformatter   -  function to format tick values for y axis.
+
 // limitHook    -  allows linking selections on histogram to other figure,
 // where limits will be set to show subset of the data
 const HistogramDataHighlight = (props) => {
@@ -43,10 +52,12 @@ const HistogramDataHighlight = (props) => {
        <AxisLeft key='yaxis' 
          scale={props.yscale ? props.yscale : linearYScale} 
          tickformat={props.yformatter ? props.yformatter : undefined }
+         style={props.ystyle ? props.ystyle : undefined }
        />
        <AxisBottom key='xaxis' 
          scale={props.xscale ? props.xscale : scaleHistLin} 
          tickformat={props.xformatter ? props.xformatter : formatter}
+         style={props.xstyle ? props.xstyle : undefined }
        />
        <HighlightBars key='histogram' 
          fill={props.fill ? props.fill : '#48c9b0'}

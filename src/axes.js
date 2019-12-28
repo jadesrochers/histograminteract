@@ -4,6 +4,7 @@ import * as R from 'ramda';
 import { jsx } from '@emotion/core'
 import { format } from 'd3-format';
 import { scaleLinear } from 'd3-scale';
+import { roundtenth } from '@jadesrochers/reacthelpers';
 
 const getTickLabels = R.curry((scale, nticks, formatter=format('.2~f')) => {
   const ticks = scale.nice(nticks).ticks(nticks)
@@ -122,8 +123,10 @@ const AxisBottom = (props) => {
   }, [props.xdata.length, data0])  
  
   return (
-    <g transform={`translate(0,${props.height})`} style={{fontSize: '0.8rem'}} >
-      <line x1={-1} y1={1} x2={props.width} y2={1} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "geometricPrecision"}} />
+    <g  
+      transform={`translate(0,${props.height})`} 
+      style={ props.style ? props.style : {fontSize: '0.8rem'}} >
+      <line x1={-1} y1={1} x2={props.width} y2={1} style={props.linestyle ? props.linestyle : defaultStyle} css={{ shapeRendering: "geometricPrecision"}} />
       <TickSet 
         ticks={ticks}
         line={{
@@ -147,7 +150,7 @@ const AxisBottom = (props) => {
 const AxisLeft = (props) => {
   const yscale = props.scale(props)
   const { scaled, formatted } = getTickLabels(yscale, props.yticks, props.tickformat)
-  const ticks =  R.zip(scaled, R.reverse(formatted))
+  const ticks =  R.zip(R.map((n) => roundtenth(scaled[scaled.length-1] - n),R.reverse(scaled)), R.reverse(formatted))
   const defaultStyle = {stroke: '#000000'}
   useMemo(() => {
     props.yscaleSet(() => yscale)
@@ -155,8 +158,10 @@ const AxisLeft = (props) => {
   }, [props.ydata, props.ymax])  
  
   return (
-    <g textAnchor='end' style={{fontSize: '0.8rem'}} >
-      <line x1={0} y1={props.height} x2={0} y2={0} style={props.styles ? props.styles : defaultStyle} css={{ shapeRendering: "geometricPrecision"}}/>
+    <g textAnchor='end' 
+      style={ props.style ? props.style : {fontSize: '0.8rem'}} 
+      >
+      <line x1={0} y1={props.height} x2={0} y2={0} style={props.linestyle ? props.linestyle : defaultStyle} css={{ shapeRendering: "geometricPrecision"}}/>
       <TickSet 
         ticks={ticks}
         line={{ x2: -6 }}

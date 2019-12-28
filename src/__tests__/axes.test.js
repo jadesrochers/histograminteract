@@ -155,6 +155,8 @@ describe('Scaling tests', () => {
   const xcustsymlog = customXscale(scaleSymlog, 0, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
   const xcustlog = customXscale(scaleLog, 1, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
 
+  const ycustlog = customYscale(scaleLog, 1, {ydata:[1,1,1,3,4,6,7,30,100,500,1234], height:110 }) 
+
   test('Use a linearYScale', () => {
     expect(lyScale(11)).toEqual(110)
     expect(lyScale(0)).toEqual(0)
@@ -186,6 +188,13 @@ describe('Scaling tests', () => {
     expect(Math.round(xcustlog(1000))).toEqual(105)
   });
 
+  test('Use a custom log Y scale', () => {
+    expect(ycustlog(1)).toEqual(0)
+    expect(Math.round(ycustlog(10))).toEqual(36)
+    expect(Math.round(ycustlog(100))).toEqual(71)
+    expect(Math.round(ycustlog(1000))).toEqual(107)
+  });
+
   test('Use a custom log X scale', () => {
     expect(xcustsymlog(0)).toEqual(0)
     expect(Math.round(xcustsymlog(1))).toEqual(11)
@@ -194,10 +203,23 @@ describe('Scaling tests', () => {
     expect(Math.round(xcustsymlog(1000))).toEqual(105)
   });
 
+
   test('Get labels for ticks', () => {
     let ticks = getTickLabels(histScale, 6) 
     expect(ticks.formatted).toEqual(['0','2','4','6','8','10','12'])
     expect(ticks.scaled).toEqual([0,18.3,36.7,55,73.3,91.7,110])
+  });
+
+  test('Get labels for custom y scaling ticks', () => {
+    let ticks = getTickLabels(ycust, 6) 
+    expect(ticks.formatted).toEqual(['0','20','40','60','80','100'])
+    expect(ticks.scaled).toEqual([0,73.6,87.5,96.8,104,110])
+  });
+
+  test('Get labels for custom y scaling ticks', () => {
+    let ticks = getTickLabels(ycustlog, 4) 
+    expect(ticks.formatted).toEqual(['1','10','100','1000','10000'])
+    expect(ticks.scaled).toEqual([0,27.5,55,82.5,110])
   });
 
 })
@@ -246,7 +268,7 @@ describe('Axes tests', () => {
       limitHook={mockLimitHook}
       yscaleSet={mockscaleSet}
       yticks={numticks} 
-      scale={linearYScale} 
+      scale={linearYScale}
       ydata={[1,1,1,3,4,6,7,10]} 
       height={100} 
       width={100} 
@@ -271,6 +293,41 @@ describe('Axes tests', () => {
     expect(mockLimitHook.setRawLims).toHaveBeenCalledTimes(1)
     expect(mockscaleSet).toHaveBeenCalledTimes(1)
   });
+
+  test('Render a Left side axis with custom scale', () => {
+    let wrapper = mount(<svg><AxisLeft 
+      limitHook={mockLimitHook}
+      yscaleSet={mockscaleSet}
+      yticks={4} 
+      scale={customYscale(() => scalePow().exponent(1/4), 0)} 
+      ydata={[1,1,1,3,4,6,7,30,100]} 
+      height={110} 
+      width={110} 
+      nbins={10} 
+      tickformat={format('.2~f')} 
+      /></svg>) 
+
+
+    /* console.log( 'Left side axis: ', wrapper.debug() ) */
+    expect(wrapper.containsAllMatchingElements([
+      <line x2={-6} />,
+     ])).toBeTruthy() 
+    expect(wrapper.text()).toEqual('100806040200')
+    expect(wrapper.find('g').get(1).props.transform).toEqual('translate(0,0)')
+    expect(wrapper.find('g').get(2).props.transform).toEqual('translate(0,6)')
+    expect(wrapper.find('g').get(3).props.transform).toEqual('translate(0,13.2)')
+    expect(wrapper.find('g').get(4).props.transform).toEqual('translate(0,22.5)')
+    expect(wrapper.find('g').get(5).props.transform).toEqual('translate(0,36.4)')
+    expect(wrapper.find('g').get(6).props.transform).toEqual('translate(0,110)')
+    expect(wrapper.find('line[x2=-6]').length).toEqual(6)
+    
+    // The Y scale is set but not in the limitHook, because that has 
+    // been for x data only thus far.
+    expect(mockLimitHook.setYscale).toHaveBeenCalledTimes(0)
+    expect(mockLimitHook.setRawLims).toHaveBeenCalledTimes(1)
+    expect(mockscaleSet).toHaveBeenCalledTimes(1)
+  });
+
 
 })
 
