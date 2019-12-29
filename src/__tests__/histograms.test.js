@@ -38,7 +38,7 @@ describe('Histogram tests', () => {
   // If you want to use a custom scale need to pass it through the 
   // customX/Y scale functions from axes module to get it set up.
   test('test custom scaling,format for HistogramDataHighlight', () => {
-    let custLog = customXscale(scaleLog, 1)
+    let custLog = customXscale(scaleLog, 1, undefined)
     let wrapper = mount(
       <svg> 
         <HistogramDataHighlight 

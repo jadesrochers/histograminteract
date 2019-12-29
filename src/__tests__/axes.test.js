@@ -147,15 +147,15 @@ describe('Scaling tests', () => {
 
   // The scale must be returned by a function, so if it is not, just
   // wrap it in one like I do with the Pow scale here. 
-  const ycust = customYscale(() => scalePow().exponent(1/4), 0, {ydata:[1,1,1,3,4,6,7,30,100], height:110}) 
-  const xcust = customXscale(() => scalePow().exponent(1/2), 0, {xdata:[1,1,1,3,4,6,7,30,100], width:110, nbins:10}) 
+  const ycust = customYscale(() => scalePow().exponent(1/4), 0, undefined, {ydata:[1,1,1,3,4,6,7,30,100], height:110}) 
+  const xcust = customXscale(() => scalePow().exponent(1/2), 0, undefined, {xdata:[1,1,1,3,4,6,7,30,100], width:110, nbins:10}) 
 
   // For log scales use scaleSymlog, otherwise there are problems
   // because plain log can't handle zero
-  const xcustsymlog = customXscale(scaleSymlog, 0, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
-  const xcustlog = customXscale(scaleLog, 1, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
+  const xcustsymlog = customXscale(scaleSymlog, 0, undefined, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
+  const xcustlog = customXscale(scaleLog, 1, undefined, {xdata:[1,1,1,3,4,6,7,30,100,500,1234], width:110, nbins:10}) 
 
-  const ycustlog = customYscale(scaleLog, 1, {ydata:[1,1,1,3,4,6,7,30,100,500,1234], height:110 }) 
+  const ycustlog = customYscale(scaleLog, 1, undefined, {ydata:[1,1,1,3,4,6,7,30,100,500,1234], height:110 }) 
 
   test('Use a linearYScale', () => {
     expect(lyScale(11)).toEqual(110)
@@ -299,7 +299,7 @@ describe('Axes tests', () => {
       limitHook={mockLimitHook}
       yscaleSet={mockscaleSet}
       yticks={4} 
-      scale={customYscale(() => scalePow().exponent(1/4), 0)} 
+      scale={customYscale(() => scalePow().exponent(1/4), 0, undefined)} 
       ydata={[1,1,1,3,4,6,7,30,100]} 
       height={110} 
       width={110} 
