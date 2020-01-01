@@ -294,6 +294,7 @@ describe('Axes tests', () => {
     expect(mockscaleSet).toHaveBeenCalledTimes(1)
   });
 
+
   test('Render a Left side axis with custom scale', () => {
     let wrapper = mount(<svg><AxisLeft 
       limitHook={mockLimitHook}
@@ -307,8 +308,6 @@ describe('Axes tests', () => {
       tickformat={format('.2~f')} 
       /></svg>) 
 
-
-    /* console.log( 'Left side axis: ', wrapper.debug() ) */
     expect(wrapper.containsAllMatchingElements([
       <line x2={-6} />,
      ])).toBeTruthy() 
