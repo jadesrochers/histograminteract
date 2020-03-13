@@ -58,8 +58,7 @@ const config = {
           path.resolve(__dirname ),
           path.resolve(__dirname, '..', 'src'),
         ],
-        use: {
-          loader: 'babel-loader',
+        use: { loader: 'babel-loader',
         }
       },
       {
@@ -73,5 +72,6 @@ const config = {
   },
 
 };
+
 
 module.exports = config

@@ -3,7 +3,7 @@
     "version": "0.1.18",
     "license": "MIT",
     "author": "Jared Desrochers",
-    "main": "dist/main.js",
+    "main": "dist/bundle.js",
     "sideEffects": false,
     "repository": {
         "type": "git",
@@ -37,7 +37,7 @@
         "profile": "webpack --config ./webpack.config.js --profile --json > webpack-stats.json",
         "start": "webpack-dev-server --progress --port 3000 --host 127.0.0.1 --inline --config demo/webpack.config.js",
         "packagePatch": "npm run test && npm run build && npm version patch && npm publish && git push -u origin master",
-        "packageMinor": "npm run test && npm run build && npm version patch && npm publish && git push -u origin master",
+        "packageMinor": "npm run test && npm run build && npm version minor && npm publish && git push -u origin master",
         "updatePatch": "npm update && npm run test && npm run build && npm version patch && npm publish && git push -u origin master",
         "CommitandPackage": "./CommitandPackage.sh"
     },

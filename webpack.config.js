@@ -16,6 +16,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     library: '@jadesrochers/histograminteract',
+    filename: 'bundle.js',
     libraryTarget: 'umd',
   },
 
@@ -32,7 +33,15 @@ const config = {
         }
       },
     ],
-  }
+  },
+
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom',
+    'reactDOM': 'react-dom',
+  },
+
+
 }
 
 module.exports = config;
