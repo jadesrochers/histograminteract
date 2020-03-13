@@ -10,7 +10,8 @@
 	   "not op_mini all"
 	 ]
       }
-    }]
-  ]
+    }],
+  ],
+  "plugins": ["emotion"]
 }
 
