@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import * as R from 'ramda';
 
 import { roundtenth } from '@jadesrochers/reacthelpers';
@@ -40,8 +40,8 @@ const HistBars = (props) => {
     barmax = 10
     maxmin = [0, 10]
   }
-  useMemo(() => props.ymaxSet(barmax), [barmax])
-  useMemo(() => props.setPlotData(maxmin), [barmax])
+  useEffect(() => { props.ymaxSet(barmax); props.setPlotData(maxmin); }, [barmax])
+  /* useMemo(() => props.setPlotData(maxmin), [barmax]) */
   if(! props.xscale && ! props.yscale){
     return null
   }

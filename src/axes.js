@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import * as R from 'ramda';
-import { jsx } from '@emotion/core'
 import { format } from 'd3-format';
 import { scaleLinear } from 'd3-scale';
 import { roundtenth } from '@jadesrochers/reacthelpers';
@@ -116,7 +114,7 @@ const AxisBottom = (props) => {
   const ticks = R.zip(scaled, formatted)
   const defaultStyle = {stroke: '#000000'}
   const data0 = props.xdata[0]
-  useMemo(() => {
+  useEffect(() => {
     props.limitHook && props.limitHook.setXscale(() => xscale)
     props.xscaleSet(() => xscale)
     props.limitHook && props.limitHook.setRawLims('x',[Math.max(...props.xdata),Math.min(...props.xdata)])
@@ -150,9 +148,10 @@ const AxisBottom = (props) => {
 const AxisLeft = (props) => {
   const yscale = props.scale(props)
   const { scaled, formatted } = getTickLabels(yscale, props.yticks, props.tickformat)
-  const ticks =  R.zip(R.map((n) => roundtenth(scaled[scaled.length-1] - n),R.reverse(scaled)), R.reverse(formatted))
+  const ticks =  R.zip(R.map((n) => Math.round((scaled[scaled.length-1] - n)*10)/10 + 1,R.reverse(scaled)), R.reverse(formatted))
+  console.log('Axisleft ticks: ',ticks)
   const defaultStyle = {stroke: '#000000'}
-  useMemo(() => {
+  useEffect(() => {
     props.yscaleSet(() => yscale)
     props.ydata && props.limitHook.setRawLims('y',[Math.max(...props.ydata),Math.min(...props.ydata)])
   }, [props.ydata, props.ymax])  
