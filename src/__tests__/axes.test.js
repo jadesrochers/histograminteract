@@ -282,9 +282,9 @@ describe('Axes tests', () => {
       <line x2={-6} />,
      ])).toBeTruthy() 
     expect(wrapper.text()).toEqual('1050')
-    expect(wrapper.find('g').get(1).props.transform).toEqual('translate(0,0)')
-    expect(wrapper.find('g').get(2).props.transform).toEqual('translate(0,50)')
-    expect(wrapper.find('g').get(3).props.transform).toEqual('translate(0,100)')
+    expect(wrapper.find('g').get(1).props.transform).toEqual('translate(0,1)')
+    expect(wrapper.find('g').get(2).props.transform).toEqual('translate(0,51)')
+    expect(wrapper.find('g').get(3).props.transform).toEqual('translate(0,101)')
     expect(wrapper.find('line[x2=-6]').length).toEqual(3)
     
     // The Y scale is set but not in the limitHook, because that has 
@@ -312,12 +312,12 @@ describe('Axes tests', () => {
       <line x2={-6} />,
      ])).toBeTruthy() 
     expect(wrapper.text()).toEqual('100806040200')
-    expect(wrapper.find('g').get(1).props.transform).toEqual('translate(0,0)')
-    expect(wrapper.find('g').get(2).props.transform).toEqual('translate(0,6)')
-    expect(wrapper.find('g').get(3).props.transform).toEqual('translate(0,13.2)')
-    expect(wrapper.find('g').get(4).props.transform).toEqual('translate(0,22.5)')
-    expect(wrapper.find('g').get(5).props.transform).toEqual('translate(0,36.4)')
-    expect(wrapper.find('g').get(6).props.transform).toEqual('translate(0,110)')
+    expect(wrapper.find('g').get(1).props.transform).toEqual('translate(0,1)')
+    expect(wrapper.find('g').get(2).props.transform).toEqual('translate(0,7)')
+    expect(wrapper.find('g').get(3).props.transform).toEqual('translate(0,14.2)')
+    expect(wrapper.find('g').get(4).props.transform).toEqual('translate(0,23.5)')
+    expect(wrapper.find('g').get(5).props.transform).toEqual('translate(0,37.4)')
+    expect(wrapper.find('g').get(6).props.transform).toEqual('translate(0,111)')
     expect(wrapper.find('line[x2=-6]').length).toEqual(6)
     
     // The Y scale is set but not in the limitHook, because that has 

@@ -1,5 +1,9 @@
 const path = require('path');
 
+// Production mode automatically sets usedExports: true
+// This config just sets a bundle type (umd)
+// and makes sure everything gets run through babel loader.
+// Does not need CSS loader because the library has no CSS.
 const config = {
   entry: './src/index.js',
 
@@ -11,7 +15,6 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: "./dist",
     library: '@jadesrochers/histograminteract',
     libraryTarget: 'umd',
   },

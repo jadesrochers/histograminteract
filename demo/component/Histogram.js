@@ -78,7 +78,6 @@ const HistPlot = () => {
   const locationy = Array.from({ length: 100 }, () =>
     Math.floor(Math.random() * 1000)
   );
-  console.log("rendering Limiter");
   return <Container data={data} locationx={locationx} locationy={locationy} />;
 };
 

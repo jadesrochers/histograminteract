@@ -149,7 +149,6 @@ const AxisLeft = (props) => {
   const yscale = props.scale(props)
   const { scaled, formatted } = getTickLabels(yscale, props.yticks, props.tickformat)
   const ticks =  R.zip(R.map((n) => Math.round((scaled[scaled.length-1] - n)*10)/10 + 1,R.reverse(scaled)), R.reverse(formatted))
-  console.log('Axisleft ticks: ',ticks)
   const defaultStyle = {stroke: '#000000'}
   useEffect(() => {
     props.yscaleSet(() => yscale)
