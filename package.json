@@ -19,13 +19,13 @@
     ],
     "dependencies": {
         "@emotion/core": "^10.0.28",
-        "@jadesrochers/fpstreamline": "^0.1.5",
-        "@jadesrochers/reacthelpers": "^0.1.15",
-        "@jadesrochers/selectbox": "^0.1.16",
+        "@jadesrochers/fpstreamline": "^0.1.6",
+        "@jadesrochers/reacthelpers": "^0.1.18",
+        "@jadesrochers/selectbox": "^0.1.18",
         "@reach/router": "^1.3.3",
         "d3-format": "^1.4.3",
         "d3-scale": "^3.2.1",
-        "ramda": "^0.26.1"
+        "ramda": "^0.27.0"
     },
     "peerdependencies": {
         "react": "^16.8.0",
@@ -51,7 +51,7 @@
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
         "eslint": "^6.8.0",
-        "eslint-config-problems": "^3.1.0",
+        "eslint-config-problems": "^4.0.0",
         "eslint-plugin-react": "^7.19.0",
         "eslint-plugin-react-hooks": "^2.5.0",
         "html-webpack-plugin": "^3.2.0",
