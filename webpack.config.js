@@ -45,8 +45,13 @@ const config = {
       commonjs: 'react',
       amd: 'react',
     },
-    'react-dom': 'react-dom',
-    'reactDOM': 'react-dom',
+    'ramda': 'ramda', 
+    '@emotion/core': '@emotion/core', 
+    '@jadesrochers/fpstreamline': '@jadesrochers/fpstreamline', 
+    '@jadesrochers/reacthelpers': '@jadesrochers/reacthelpers', 
+    '@jadesrochers/selectbox': '@jadesrochers/selectbox', 
+    'd3-format':'d3-format', 
+    'd3-scale':'d3-scale', 
   },
 
 
