@@ -3,7 +3,6 @@ import * as R from 'ramda';
 
 import { roundtenth } from '@jadesrochers/reacthelpers';
 import { isBarHighlightedX } from '@jadesrochers/selectbox';
-import * as fps from '@jadesrochers/fpstreamline';
 
 import { Rect, HighlightRect } from './svgfeatures'
 
