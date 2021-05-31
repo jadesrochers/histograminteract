@@ -37,6 +37,13 @@ const customXscale = R.curry((xscale, min, max, props) => {
   return xscale().domain([xmin,xmax]).range([0,props.width])
 })
 
+const symLogscale = R.curry((symscale, min, anchor, max, props, isX=true) => {
+  const dmin = min ? min : 0 
+  const dmax = max ? max : ( isX ? Math.max(...props.xdata) * (1+1/props.nbins) : Math.max(...props.ydata) )
+  const rangemax = isX ? Math.max(...props.xdata) : Math.max(...props.ydata)
+  return symscale().domain([dmin,dmax]).constant(anchor).range([0,rangemax])
+})
+
 const TickLine = ({stroke, length, ...other}) => {
   stroke = stroke ? stroke : '#000' 
   return(

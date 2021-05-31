@@ -8,9 +8,8 @@ const path = require('path');
 // Webpack will still include a ref to it, so you need the externals:
 // statement for sure.
 const config = {
-  entry: './src/index.js',
-
   mode: 'production',
+  entry: './src/index.js',
 
   optimization: {
     usedExports: true,
@@ -46,7 +45,7 @@ const config = {
       amd: 'react',
     },
     'ramda': 'ramda', 
-    '@emotion/core': '@emotion/core', 
+    '@emotion/react': '@emotion/react', 
     '@jadesrochers/fpstreamline': '@jadesrochers/fpstreamline', 
     '@jadesrochers/reacthelpers': '@jadesrochers/reacthelpers', 
     '@jadesrochers/selectbox': '@jadesrochers/selectbox', 

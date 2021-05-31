@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import * as R from 'ramda';
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 const Rect = (props) => {
   let scale = props.scale ? `scale(${props.scale})` : ''

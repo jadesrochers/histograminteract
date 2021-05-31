@@ -3,7 +3,7 @@ import { format } from 'd3-format';
 import { scaleSymlog, scaleLog, scalePow } from 'd3-scale';
 import { shallow, mount } from '../enzyme';
 import { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes'
-import { matchers } from 'jest-emotion'
+import { matchers } from '@emotion/jest'
 
 expect.extend(matchers)
 
