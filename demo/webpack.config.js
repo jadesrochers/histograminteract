@@ -2,10 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
- const htmlWebpackPlugin = new HtmlWebPackPlugin({
-   template: "./template/index.html",
-   filename: "./index.html"
- });
+const htmlWebpackPlugin = new HtmlWebPackPlugin({
+    template: "./template/index.html",
+    filename: "./index.html"
+});
 
 
 // Entrypoint is index.js, but the dev server will
@@ -20,56 +20,56 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 // The htmlWebpackPlugin must be listed in plugins to generate index.html,
 // don't know what the loaderOptionsPlugin does.
 const config = {
-  mode: 'development',
-  entry: [ './index.js', ],
-  context: __dirname,
+    mode: 'development',
+    entry: [ './index.js', ],
+    context: __dirname,
 
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-  },
-
-  devServer: {
-    contentBase: __dirname,
-    historyApiFallback: true,
-    inline: true,
-  },
-
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      debug: true
-    }),
-    htmlWebpackPlugin,
-  ],
-
-  resolve: {
-    alias: {
-      histograminteract: path.join(__dirname, '..', 'src/index.js'),
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js',
     },
-    extensions: ['.js', '.jsx', '.json'],
-  },
 
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        include: [
-          path.resolve(__dirname ),
-          path.resolve(__dirname, '..', 'src'),
-        ],
-        use: { loader: 'babel-loader',
-        }
-      },
-      {
-        include: [
-          path.resolve(__dirname ),
-        ],
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
+    devServer: {
+        contentBase: __dirname,
+        historyApiFallback: true,
+        inline: true,
+    },
+
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        }),
+        htmlWebpackPlugin,
     ],
-  },
+
+    resolve: {
+        alias: {
+            histograminteract: path.join(__dirname, '..', 'src/index.js'),
+        },
+        extensions: ['.js', '.jsx', '.json'],
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname ),
+                    path.resolve(__dirname, '..', 'src'),
+                ],
+                use: { loader: 'babel-loader',
+                }
+            },
+            {
+                include: [
+                    path.resolve(__dirname ),
+                ],
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
+    },
 
 };
 
