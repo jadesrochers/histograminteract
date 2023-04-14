@@ -29,7 +29,10 @@
         "interactive"
     ],
     "jest": {
-        "testEnvironment": "jsdom"
+        "testEnvironment": "jsdom",
+        "transformIgnorePatterns": [
+            "/node_modules/?!(d3-format|d3-scale)"
+        ]
     },
     "dependencies": {
         "@emotion/react": "^11.4.0",
