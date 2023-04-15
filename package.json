@@ -8,17 +8,19 @@
         "type": "git",
         "url": "https://github.com/jadesrochers/histograminteract.git"
     },
+    "main":  "./dist/histogram-umd.js",
+    "exports": {
+        "import": "./es/index.js",
+        "require": "./dist/histogram-umd.js",
+        "node": "./dist/histogram-umd.js",
+        "default": "./dist/histogram-umd.js"
+    },
     "files": [
         "es/",
         "dist/",
         "README.md",
         "LICENSE"
     ],
-    "exports": {
-        "node": "./dist/histogram-umd.js",
-        "browser": "./es/index.js",
-        "default": "./dist/histogram-umd.js"
-    },
     "description": "A set of components to build figures, with interactive histogram built",
     "keywords": [
         "react",
