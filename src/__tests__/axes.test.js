@@ -10,12 +10,12 @@ expect.extend(matchers)
 
 describe('TickLine tests', () => {
     test('Render a y tickline', () => {
-        let liney = {y2: 10} 
+        const liney = {y2: 10} 
         const { container } = render(<svg> <TickLine {...liney} /> </svg>) 
         expect(container.getElementsByTagName('line').item(0).getAttribute("stroke")).toEqual('#000')
     });
     test('Render an x tickline', () => {
-        let linex = {x2: 10} 
+        const linex = {x2: 10} 
         const { container } = render(<svg> <TickLine {...linex} /> </svg>) 
         expect(container.getElementsByTagName('line').item(0).getAttribute("x2")).toEqual('10')
     });
@@ -23,7 +23,7 @@ describe('TickLine tests', () => {
 
 describe('Gtext tests', () => {
     test('Render a y text label', () => {
-        let ylabel = {
+        const ylabel = {
             style: {dominantBaseline: 'mathematical'},
             x: -6, 
             dx: '-0.4em'
@@ -34,7 +34,7 @@ describe('Gtext tests', () => {
     });
 
     test('Render an x text label', () => {
-        let xlabel = {
+        const xlabel = {
             style: {textAnchor: 'middle'},
             y: 6, 
             dy: '0.9em',
@@ -48,9 +48,9 @@ describe('Gtext tests', () => {
 
 describe('Tick tests', () => {
     test('Render an x tick', () => {
-        let offset = 1, label =  '1';
-        let line = {y2: 10} 
-        let text={ style: {textAnchor: 'middle'}, y: 6, dy: '0.9em' }
+        const offset = 1, label =  '1';
+        const line = {y2: 10} 
+        const text={ style: {textAnchor: 'middle'}, y: 6, dy: '0.9em' }
         const { container } = render(<svg> <Tick offset={offset} label={label} line={line} text={text} stroke='#000' /> </svg>) 
         expect(container.getElementsByTagName('line').item(0)).toBeTruthy()
         expect(container.getElementsByTagName('g').item(0).getAttribute("transform")).toEqual('translate(1,0)')
@@ -58,9 +58,9 @@ describe('Tick tests', () => {
     });
 
     test('Render a y tick', () => {
-        let offset = 1, label =  '1';
-        let line = {x2: -10} 
-        let text={ style: {dominantBaseline: 'mathematical'}, x: -6, dx: '-0.5em' }
+        const offset = 1, label =  '1';
+        const line = {x2: -10} 
+        const text={ style: {dominantBaseline: 'mathematical'}, x: -6, dx: '-0.5em' }
         const { container } = render(<svg> <Tick offset={offset} label={label} line={line} text={text} stroke='#000' /> </svg>) 
         expect(container.getElementsByTagName('line').item(0).getAttribute('x2')).toEqual('-10')
         expect(container.getElementsByTagName('g').item(0).getAttribute("transform")).toEqual('translate(0,1)')
@@ -202,19 +202,19 @@ describe('Scaling tests', () => {
 
 
     test('Get labels for ticks', () => {
-        let ticks = getTickLabels(histScale, 6) 
+        const ticks = getTickLabels(histScale, 6) 
         expect(ticks.formatted).toEqual(['0','2','4','6','8','10','12'])
         expect(ticks.scaled).toEqual([0,18.3,36.7,55,73.3,91.7,110])
     });
 
     test('Get labels for custom y scaling ticks', () => {
-        let ticks = getTickLabels(ycust, 6) 
+        const ticks = getTickLabels(ycust, 6) 
         expect(ticks.formatted).toEqual(['0','20','40','60','80','100'])
         expect(ticks.scaled).toEqual([0,73.6,87.5,96.8,104,110])
     });
 
     test('Get labels for custom y scaling ticks', () => {
-        let ticks = getTickLabels(ycustlog, 4) 
+        const ticks = getTickLabels(ycustlog, 4) 
         expect(ticks.formatted).toEqual(['1','10','100','1000','10000'])
         expect(ticks.scaled).toEqual([0,27.5,55,82.5,110])
     });
@@ -223,7 +223,7 @@ describe('Scaling tests', () => {
 
 describe('Axes tests', () => {
     let mockLimitHook, mockscaleSet
-    let numticks = 3 
+    const numticks = 3 
     beforeEach(() => {
         mockLimitHook = {setXscale: jest.fn(), setYscale: jest.fn(), setRawLims: jest.fn()}
         mockscaleSet = jest.fn()
@@ -317,25 +317,12 @@ describe('Axes tests', () => {
         expect(container.getElementsByTagName('g').item(5).getAttribute('transform')).toEqual('translate(0,37.4)')
         expect(container.getElementsByTagName('g').item(6).getAttribute('transform')).toEqual('translate(0,111)')
 
-        // expect(container.containsAllMatchingElements([
-        //     <line x2={-6} />,
-        // ])).toBeTruthy() 
-        // expect(container.text()).toEqual('100806040200')
-        // expect(container.find('g').get(1).props.transform).toEqual('translate(0,1)')
-        // expect(container.find('g').get(2).props.transform).toEqual('translate(0,7)')
-        // expect(container.find('g').get(3).props.transform).toEqual('translate(0,14.2)')
-        // expect(container.find('g').get(4).props.transform).toEqual('translate(0,23.5)')
-        // expect(container.find('g').get(5).props.transform).toEqual('translate(0,37.4)')
-        // expect(container.find('g').get(6).props.transform).toEqual('translate(0,111)')
-        // expect(container.find('line[x2=-6]').length).toEqual(6)
-
-        // The Y scale is set but not in the limitHook, because that has 
+       // The Y scale is set but not in the limitHook, because that has 
         // been for x data only thus far.
         expect(mockLimitHook.setYscale).toHaveBeenCalledTimes(0)
         expect(mockLimitHook.setRawLims).toHaveBeenCalledTimes(1)
         expect(mockscaleSet).toHaveBeenCalledTimes(1)
     });
-
 
 })
 

@@ -30,9 +30,7 @@ const config = {
     },
 
     devServer: {
-        contentBase: __dirname,
         historyApiFallback: true,
-        inline: true,
     },
 
     plugins: [

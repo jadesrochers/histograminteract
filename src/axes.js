@@ -62,8 +62,7 @@ const Gtext = ({fill, label, ...other}) => {
 }
 
 const Tick = ({stroke, offset, label, line, text}) => {
-  let trans
-  trans = `translate(0,${offset})`
+  let trans = `translate(0,${offset})`
   if(line.y2){
     trans = `translate(${offset},0)`
   }
@@ -96,9 +95,9 @@ const TickSet = ({ticks, ...other}) => {
 // Dumb just means there is no scaling and it takes a guess
 // at how to space the ticks based on the width or height arg
 const TickDumbSet = ({ticks, ...other}) => {
-  let stackvert = other.stackvert ? other.stackvert : false 
+  const stackvert = other.stackvert ? other.stackvert : false 
   let offset = 0;
-  let format = other.format ? other.format : ((n) => n)
+  const format = other.format ? other.format : ((n) => n)
   return(
     R.map((lab) => { 
     offset=(stackvert ? (offset+other.height) : (offset+other.width))

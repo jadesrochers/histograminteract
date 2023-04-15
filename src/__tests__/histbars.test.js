@@ -1,37 +1,35 @@
 import React from 'react';
-import { shallow } from '../enzyme';
-import { HighlightBars, RegBars } from '../histbars'
+import { render, screen, renderHook, act } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import { HistogramDataHighlight } from '../histograms'
 
-describe('Histbar tests', () => {
-  // The tests are very basic because it would be complex to mount them
-  // with all the args/interactions they need to work completely.
-  // Histogram.test integration test covers them better.
-  test('test for HighlightBars', () => {
-    let ymaxSet = jest.fn()
-    let setPlotData = jest.fn()
-    let wrapper = shallow(
-      <svg> 
-        <HighlightBars 
-          xdata={[1,2,3,3,4,4,6,8,11]}  
-          nbins={5}
-          ymaxSet={ymaxSet}
-          setPlotData={setPlotData}
-        />
-      </svg>) 
-    /* console.log(wrapper.debug()) */
-    expect(wrapper.containsMatchingElement(<HighlightBars ></HighlightBars>)).toBeTruthy()
-  });
 
-  test('test for RegBars', () => {
-    let wrapper = shallow(
-      <svg> 
-        <RegBars 
-          xdata={[1,2,3,3,4,4,6,8,11]}  
-          nbins={5}
+describe('Histogram tests', () => {
+    // Tests the histbars.js file, which can only be done well with an 
+    // Integration test 
+    test('test the bars using a historgram', () => {
+    const { container } = render(
+        <svg> 
+        <HistogramDataHighlight 
+        xdata={[1,2,3,3,4,4,5,6,8,9,10]}  
+        nbins={5}
+        xticks={5}
+        yticks={3}
+        height={220}
+        width={270}
+        margins={{top: 10, left: 10, bottom: 10, right: 10}}
         />
-      </svg>) 
-    expect(wrapper.containsMatchingElement(<RegBars ></RegBars>)).toBeTruthy()
-  });
+        </svg>) 
+
+    // The axes are tested extensively elsewhere, checking the bars here.
+    const rects = container.getElementsByTagName('rect')
+    expect(rects.item(0).getAttribute('height')).toEqual('90')
+    expect(rects.item(0).getAttribute('width')).toEqual('32.3')
+    expect(rects.item(1).getAttribute('height')).toEqual('180')
+    expect(rects.item(2).getAttribute('height')).toEqual('90')
+    expect(rects.item(3).getAttribute('height')).toEqual('45')
+    expect(rects.item(4).getAttribute('height')).toEqual('90')
+    });
 })
 
 

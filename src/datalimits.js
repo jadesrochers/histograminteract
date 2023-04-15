@@ -10,8 +10,8 @@ const useLimits = () => {
   const [ylimits, setylimits] = useState({min:0, max:0})
   // The scale functions come from d3-scale; scale.invert()
   // gets the original values, which are used to check data against limits.
-  const [xscale, setXscale] = useState(() => { let invert = n => n; return {invert: invert} })
-  const [yscale, setYscale] = useState(() => { let invert = n => n; return {invert: invert} })
+  const [xscale, setXscale] = useState(() => { const invert = n => n; return {invert: invert} })
+  const [yscale, setYscale] = useState(() => { const invert = n => n; return {invert: invert} })
 
   const setLimits = R.curry((which, maxmin) => {
     const vals = R.values(maxmin)

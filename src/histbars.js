@@ -3,7 +3,6 @@ import * as R from 'ramda';
 
 import { roundtenth } from '@jadesrochers/reacthelpers';
 import { isBarHighlightedX } from '@jadesrochers/selectbox';
-
 import { Rect, HighlightRect } from './svgfeatures'
 
 // Creates Histogram bars on a plot providing there is xdata

@@ -1,38 +1,38 @@
 import React from 'react';
-import { shallow } from '../enzyme';
 import { useLimits } from '../datalimits'
-import { HookWrapper } from '@jadesrochers/reacthelpers'
+import { renderHook, act } from '@testing-library/react'
 
 describe('useLimits tests', () => {
-  test('Test raw and scaled limit setting', () => {
+    test('Test raw and scaled limit setting', () => {
 
-    // the wrapping function for the hook is so that args can be 
-    // passed to initialize if needed. Did not need to here.
-    let xscale = { invert: (n) => n*2 }
-    let yscale = { invert: (n) => n/2 }
-    let wrapper = shallow(<HookWrapper hook={() => useLimits()}  />) 
-    let hook = wrapper.find('div').props().hook;
+        // the wrapping function for the hook is so that args can be 
+        // passed to initialize if needed. Did not need to here.
+        const xscale = { invert: (n) => n*2 }
+        const yscale = { invert: (n) => n/2 }
+        const { result } = renderHook(() => useLimits()) 
 
-    expect(hook.xlimits).toEqual({min:0, max:0})
-    expect(hook.ylimits).toEqual({min:0, max:0})
+        expect(result.current.xlimits).toEqual({min:0, max:0})
+        expect(result.current.ylimits).toEqual({min:0, max:0})
 
-    hook.setRawLims('x',[15, 45])
-    hook.setRawLims('y',[5, 30])
+        act(() => {
+            result.current.setRawLims('x',[15, 45])
+            result.current.setRawLims('y',[5, 30])
+        })
+        expect(result.current.xlimits).toEqual({min:15, max:45})
+        expect(result.current.ylimits).toEqual({min:5, max:30})
 
-    hook = wrapper.find('div').props().hook
-    expect(hook.xlimits).toEqual({min:15, max:45})
-    expect(hook.ylimits).toEqual({min:5, max:30})
+        act(() => {
+            result.current.setXscale(() => xscale)
+            result.current.setYscale(() => yscale)
+        })
 
-    hook.setXscale(() => xscale)
-    hook.setYscale(() => yscale)
+        act(() => {
+            result.current.setLimits('x', [10, 30])
+            result.current.setLimits('y', [50, 200])
+        })
 
-    hook = wrapper.find('div').props().hook
-    hook.setLimits('x', [10, 30])
-    hook.setLimits('y', [50, 200])
+        expect(result.current.xlimits).toEqual({min:20, max:60})
+        expect(result.current.ylimits).toEqual({min:25, max:100})
 
-    hook = wrapper.find('div').props().hook
-    expect(hook.xlimits).toEqual({min:20, max:60})
-    expect(hook.ylimits).toEqual({min:25, max:100})
-
-  });
+    });
 })
