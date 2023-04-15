@@ -1,6 +1,6 @@
 {
     "name": "@jadesrochers/histograminteract",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "license": "MIT",
     "author": "Jared Desrochers",
     "sideEffects": false,
@@ -8,7 +8,7 @@
         "type": "git",
         "url": "https://github.com/jadesrochers/histograminteract.git"
     },
-    "main":  "./dist/histogram-umd.js",
+    "main": "./dist/histogram-umd.js",
     "exports": {
         "import": "./es/index.js",
         "require": "./dist/histogram-umd.js",
