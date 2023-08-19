@@ -1,0 +1,11 @@
+.ticklineRendering {
+  shapeRendering: geometricPrecision;
+}
+
+.axesbottomRendering {
+  shapeRendering: geometricPrecision;
+}
+
+.axesleftRendering {
+  shapeRendering: geometricPrecision;
+}

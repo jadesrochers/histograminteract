@@ -9,7 +9,7 @@ const path = require('path');
 // statement for sure.
 const config = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: './src/index.mjs',
 
   optimization: {
     usedExports: true,
@@ -34,6 +34,11 @@ const config = {
           loader: 'babel-loader',
         }
       },
+      {
+          test: /\.css$/i,
+          exclude: /node_modules/,
+          use: ['style-loader', 'css-loader'],
+      },
     ],
   },
 
@@ -45,7 +50,6 @@ const config = {
       amd: 'react',
     },
     'ramda': 'ramda', 
-    '@emotion/react': '@emotion/react', 
     '@jadesrochers/fpstreamline': '@jadesrochers/fpstreamline', 
     '@jadesrochers/reacthelpers': '@jadesrochers/reacthelpers', 
     '@jadesrochers/selectbox': '@jadesrochers/selectbox', 

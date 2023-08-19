@@ -10,7 +10,7 @@
     },
     "main": "./dist/histogram-umd.js",
     "exports": {
-        "import": "./es/index.js",
+        "import": "./es/index.mjs",
         "require": "./dist/histogram-umd.js",
         "node": "./dist/histogram-umd.js",
         "default": "./dist/histogram-umd.js"
@@ -31,15 +31,19 @@
     ],
     "jest": {
         "testEnvironment": "jsdom",
+        "transform": {
+            "^.+\\.jsx?$": "babel-jest",
+            "^.+\\.mjs$": "babel-jest",
+            "^.+\\.js$": "babel-jest"
+        },
         "transformIgnorePatterns": [
             "/node_modules/?!(d3-format|d3-scale)"
         ]
     },
     "dependencies": {
-        "@emotion/react": "^11.4.0",
-        "@jadesrochers/fpstreamline": "^0.1.7",
-        "@jadesrochers/reacthelpers": "^0.4.1",
-        "@jadesrochers/selectbox": "^0.3.0",
+        "@jadesrochers/fpstreamline": "^0.1.8",
+        "@jadesrochers/reacthelpers": "^0.4.4",
+        "@jadesrochers/selectbox": "^0.3.2",
         "d3-format": "^3.1.0",
         "d3-scale": "^4.0.0",
         "ramda": "^0.28.0"
@@ -51,7 +55,7 @@
     "scripts": {
         "test": "BABEL_ENV=jest jest",
         "test-watch": "BABEL_ENV=jest jest --watch",
-        "build-es": "BABEL_ENV=es6 babel --out-dir es --ignore '**/__tests__/','**/enzyme.js'  src",
+        "build-es": "BABEL_ENV=es6 babel --keep-file-extension --out-dir es --ignore '**/__tests__/','**/enzyme.js'  src",
         "build-umd-roll": "BABEL_ENV=umd rollup --config ./rollup.config.mjs",
         "profile": "webpack --config ./webpack.config.js --profile --json > webpack-stats.json",
         "start": "BABEL_ENV=es6 webpack serve --progress --port 3000 --host 127.0.0.1 --config demo/webpack.config.js",
@@ -64,8 +68,6 @@
         "@babel/core": "^7.14.3",
         "@babel/preset-env": "^7.14.4",
         "@babel/preset-react": "^7.13.13",
-        "@emotion/babel-plugin": "^11.3.0",
-        "@emotion/jest": "^11.1.0",
         "@rollup/plugin-babel": "^6.0.0",
         "@rollup/plugin-commonjs": "^24.0.0",
         "@rollup/plugin-node-resolve": "^15.0.0",
@@ -74,7 +76,7 @@
         "@testing-library/react": "^14.0.0",
         "babel-jest": "29.5.0",
         "babel-loader": "^9.0.0",
-        "css-loader": "^6.0.0",
+        "css-loader": "^6.8.1",
         "eslint": "^8.0.0",
         "eslint-config-problems": "^7.0.0",
         "eslint-plugin-react": "^7.24.0",

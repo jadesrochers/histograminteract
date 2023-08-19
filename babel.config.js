@@ -15,7 +15,6 @@ module.exports = {
                     }
                 }],
         ],
-        "plugins": [ ["@emotion", { "sourceMap":false } ] ]
     },
 
     "es6" : {
@@ -29,7 +28,6 @@ module.exports = {
                     modules: false,
                 }],
         ],
-        "plugins": [ ["@emotion", {"sourceMap":false }] ]
     },
 
     "jest" : {
@@ -42,7 +40,6 @@ module.exports = {
                     }
                 }],
         ],
-        "plugins": ["@emotion"]
     }
 }
 }

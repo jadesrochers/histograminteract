@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import { format } from 'd3-format';
 import { scaleLinear } from 'd3-scale';
 import { roundtenth } from '@jadesrochers/reacthelpers';
+import styles from "./axes.modules.css";
 
 const getTickLabels = R.curry((scale, nticks, formatter=format('.2~f')) => {
   const ticks = scale.nice(nticks).ticks(nticks)
@@ -47,7 +48,12 @@ const symLogscale = R.curry((symscale, min, anchor, max, props, isX=true) => {
 const TickLine = ({stroke, length, ...other}) => {
   stroke = stroke ? stroke : '#000' 
   return(
-    <line stroke={stroke} {...other}  css={{ shapeRendering: "geometricPrecision"}}  />
+    <line 
+      className={styles.ticklineRendering}
+      stroke={stroke} 
+      {...other}  
+      // css={{ shapeRendering: "geometricPrecision"}}
+      />
   )
 }
 
@@ -130,7 +136,12 @@ const AxisBottom = (props) => {
     <g  
       transform={`translate(0,${props.height})`} 
       style={ props.style ? props.style : {fontSize: '0.8rem'}} >
-      <line x1={-1} y1={1} x2={props.width} y2={1} style={props.linestyle ? props.linestyle : defaultStyle} css={{ shapeRendering: "geometricPrecision"}} />
+      <line 
+      x1={-1} y1={1} x2={props.width} y2={1} 
+      style={props.linestyle ? props.linestyle : defaultStyle} 
+      classNames={styles.axesbottomRendering}
+      // css={{ shapeRendering: "geometricPrecision"}} 
+      />
       <TickSet 
         ticks={ticks}
         line={{
@@ -165,7 +176,12 @@ const AxisLeft = (props) => {
     <g textAnchor='end' 
       style={ props.style ? props.style : {fontSize: '0.8rem'}} 
       >
-      <line x1={0} y1={props.height} x2={0} y2={0} style={props.linestyle ? props.linestyle : defaultStyle} css={{ shapeRendering: "geometricPrecision"}}/>
+      <line 
+      x1={0} y1={props.height} x2={0} y2={0}
+      style={props.linestyle ? props.linestyle : defaultStyle}
+      className={styles.axesleftRendering}
+      // css={{ shapeRendering: "geometricPrecision"}}
+      />
       <TickSet 
         ticks={ticks}
         line={{ x2: -6 }}

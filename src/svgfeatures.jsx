@@ -1,16 +1,22 @@
-/** @jsx jsx */
 import * as R from 'ramda';
-import { jsx } from '@emotion/react'
+import React from "react";
+
 
 const Rect = (props) => {
   let scale = props.scale ? `scale(${props.scale})` : ''
+  const transforms = {
+    transform: `translate(${props.xoffset}px,${props.yoffset}px) ${scale}`,
+    fill: props.fill,
+  }
   return(
     <rect
-     css={[{
-        transform: `translate(${props.xoffset}px,${props.yoffset}px) ${scale}`,
-        fill: props.fill
-      },
-      props.cssStyles ? props.cssStyles : undefined] }
+      style={transforms}
+      className={props.classnames ? props.classnames.join(' ') : undefined}
+     // css={[{
+     //    transform: `translate(${props.xoffset}px,${props.yoffset}px) ${scale}`,
+     //    fill: props.fill
+     //  },
+      // props.cssStyles ? props.cssStyles : undefined] }
       height={props.height ? props.height : 0}
       width={props.width}
     />

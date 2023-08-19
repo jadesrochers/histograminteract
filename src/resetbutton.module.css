@@ -1,0 +1,26 @@
+.activeState {
+  &:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+  }
+}
+
+.hoverColor {
+  &:hover {
+    color: #f4f6f6;
+  }
+}
+
+.baseStyle {
+  line-height: 1.1;
+  padding: .4em .6em .4em .6em;
+  border: 1px solid #fff;
+  appearance: none;
+  pointerEvents: 'all';
+}
+
+.defaultStyle {
+  font-size: 0.8em;
+  color: #000;
+  background-color: #3498db;
+}

@@ -1,0 +1,5 @@
+export { FigureContainer } from './figurebuilder.jsx'
+export { HistogramDataHighlight } from './histograms.jsx'
+export { Rect, HighlightRect, BarRects } from './svgfeatures.jsx'
+export { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from './axes.jsx'
+export { useLimits } from './datalimits.jsx'
