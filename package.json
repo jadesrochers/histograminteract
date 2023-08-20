@@ -61,7 +61,7 @@
     "scripts": {
         "test": "BABEL_ENV=jest jest",
         "test-watch": "BABEL_ENV=jest jest --watch",
-        "build-es": "BABEL_ENV=es6 babel --keep-file-extension --out-dir es --ignore '**/__tests__/','**/enzyme.js'  src",
+        "build-es": "BABEL_ENV=es6 babel --keep-file-extension --out-dir es --ignore '**/__tests__/' src && cp src/*.css es/",
         "build-umd-roll": "BABEL_ENV=umd rollup --config ./rollup.config.mjs",
         "profile": "webpack --config ./webpack.config.js --profile --json > webpack-stats.json",
         "start": "BABEL_ENV=es6 webpack serve --progress --port 3000 --host 127.0.0.1 --config demo/webpack.config.js",
