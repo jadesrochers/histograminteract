@@ -3,7 +3,7 @@ import * as R from 'ramda';
 
 import { roundtenth } from '@jadesrochers/reacthelpers';
 import { isBarHighlightedX } from '@jadesrochers/selectbox';
-import { Rect, HighlightRect } from './svgfeatures'
+import { Rect, HighlightRect } from './svgfeatures.jsx'
 
 // Creates Histogram bars on a plot providing there is xdata
 // sets ymax once it calculates it, 

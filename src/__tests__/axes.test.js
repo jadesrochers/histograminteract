@@ -4,9 +4,7 @@ import { scaleSymlog, scaleLog, scalePow } from 'd3-scale';
 import '@testing-library/jest-dom'
 import { render, screen, renderHook, act } from '@testing-library/react'
 import { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes'
-import { matchers } from '@emotion/jest'
 
-expect.extend(matchers)
 
 describe('TickLine tests', () => {
     test('Render a y tickline', () => {

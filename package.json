@@ -38,6 +38,12 @@
         },
         "transformIgnorePatterns": [
             "/node_modules/?!(d3-format|d3-scale)"
+        ],
+        "moduleNameMapper": {
+            "\\.(css|less)$": "<rootDir>/src/__tests__/__mocks__/styleMock.js"
+        },
+        "testPathIgnorePatterns": [
+            "<rootDir>/src/__tests__/__mocks__"
         ]
     },
     "dependencies": {
@@ -90,6 +96,7 @@
         "react-test-renderer": "18.2.0",
         "rollup": "^3.0.0",
         "rollup-plugin-filesize": "^10.0.0",
+        "rollup-plugin-postcss": "^4.0.2",
         "style-loader": "^3.0.0",
         "webpack": "^5.0.0",
         "webpack-cli": "^5.0.0",

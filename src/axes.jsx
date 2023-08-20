@@ -139,7 +139,7 @@ const AxisBottom = (props) => {
       <line 
       x1={-1} y1={1} x2={props.width} y2={1} 
       style={props.linestyle ? props.linestyle : defaultStyle} 
-      classNames={styles.axesbottomRendering}
+      className={styles.axesbottomRendering}
       // css={{ shapeRendering: "geometricPrecision"}} 
       />
       <TickSet 

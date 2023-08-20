@@ -1,8 +1,8 @@
 import React from 'react'
-import { FigureContainer } from './figurebuilder'
-import { linearYScale,  scaleHistLin, customYscale, customXscale, AxisBottom, AxisLeft } from './axes'
-import { ResetButton } from './resetbutton'
-import { HighlightBars } from './histbars'
+import { FigureContainer } from './figurebuilder.jsx'
+import { linearYScale,  scaleHistLin, customYscale, customXscale, AxisBottom, AxisLeft } from './axes.jsx'
+import { ResetButton } from './resetbutton.jsx'
+import { HighlightBars } from './histbars.jsx'
 import { SelectBase, SetBarxLimits, SelectXRect, MouseRect, ViewBoxConst } from '@jadesrochers/selectbox'
 import { pickformatter } from '@jadesrochers/reacthelpers'
 
