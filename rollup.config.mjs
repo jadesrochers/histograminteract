@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from "@rollup/plugin-terser";
 import filesize from 'rollup-plugin-filesize';
 import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 
 export default {
     input: './src/index.mjs',
@@ -19,7 +20,12 @@ export default {
         babel({
             exclude: 'node_modules/**',
         }),
-        postcss(),
+        postcss({
+                plugins: [autoprefixer()],
+                sourceMap: true,
+                extract: true,
+                minimize: true
+        }),
         nodeResolve(),
         commonjs(),
         terser(),
