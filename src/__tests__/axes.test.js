@@ -3,7 +3,7 @@ import { format } from 'd3-format';
 import { scaleSymlog, scaleLog, scalePow } from 'd3-scale';
 import '@testing-library/jest-dom'
 import { render, screen, renderHook, act } from '@testing-library/react'
-import { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes'
+import { customXscale, customYscale, linearYScale, scaleHistLin, AxisBottom, AxisLeft, Tick, TickSet, TickDumbSet, TickLine, Gtext, getTickLabels } from '../axes.jsx'
 
 
 describe('TickLine tests', () => {

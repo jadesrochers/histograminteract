@@ -1,9 +1,8 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as R from 'ramda';
 import { format } from 'd3-format';
 import { scaleLinear } from 'd3-scale';
-import { roundtenth } from '@jadesrochers/reacthelpers';
-import styles from "./axes.modules.css";
+import styles from "./axes.module.css";
 
 const getTickLabels = R.curry((scale, nticks, formatter=format('.2~f')) => {
   const ticks = scale.nice(nticks).ticks(nticks)
