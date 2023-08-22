@@ -48,7 +48,7 @@
     },
     "dependencies": {
         "@jadesrochers/fpstreamline": "^0.1.8",
-        "@jadesrochers/reacthelpers": "^0.4.4",
+        "@jadesrochers/reacthelpers": "^0.5.0",
         "@jadesrochers/selectbox": "^0.4.0",
         "d3-format": "^3.1.0",
         "d3-scale": "^4.0.0",
